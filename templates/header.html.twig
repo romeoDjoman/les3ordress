@@ -7,14 +7,14 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="{{path('accueil')}}">Accueil</a>
+					<a class="nav-link active" aria-current="page" href="">Accueil</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{path('affiche_produits')}}">Produits</a>
+					<a class="nav-link" href="">Produits</a>
 				</li>
 				{# Affichage du nombre de produits dans le panier #}
 				<li class="nav-item">
-					<a class="nav-link text-warning position-relative" href="{{ path('app_panier') }}">Panier
+					<a class="nav-link text-warning position-relative" href="">Panier
 						<i class="fab fa-opencart fa-lg"></i>
 						{% if app.session.get('quantite') > 0 %}
 
