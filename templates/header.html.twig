@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">Logo</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{path('accueil')}}">Accueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('affiche_produits')}}">Produits</a>
+				</li>
+				{# Affichage du nombre de produits dans le panier #}
+				<li class="nav-item">
+					<a class="nav-link text-warning position-relative" href="{{ path('app_panier') }}">Panier
+						<i class="fab fa-opencart fa-lg"></i>
+						{% if app.session.get('quantite') > 0 %}
+
+							<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
+								{{ app.session.get('quantite') }}
+								<span class="visually-hidden">unread messages</span>
+							</span>
+						{% endif %}
+					</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						T-shirts
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item" href="#">T-shirts unisexes</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">T-shirts hommes</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="#">T-shirts femmes</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Tote-bags</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Thème mediéval</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav me-right mb-2 mb-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Inscription</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Connexion</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Déconnexion</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Gestionnaire</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
