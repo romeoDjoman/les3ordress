@@ -37,11 +37,12 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Pas d'adresses</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_address_new') }}">Create new</a>
+    <a href="{{ path('app_address_new') }}">Creer une adresse</a>
+    <a class="ms-5"href="{{ path('app_compte') }}">Retour page compte</a>
 {% endblock %}

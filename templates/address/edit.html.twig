@@ -3,7 +3,7 @@
 {% block title %}Edit Address{% endblock %}
 
 {% block body %}
-    {{ include("partials/title.html.twig", {'name':'Gérez votre adresse'}) }}
+    {# {{ include("partials/title.html.twig", {'name':'Gérez votre adresse'}) }} #}
     <div class="login_register_wrap section">
         <div class="container">
             <div class="row justify-content-center">
@@ -15,7 +15,7 @@
                             </div>
                             <div class="content">
                                 {{ include('address/_form.html.twig', {'button_label': 'Modifier'}) }}
-                                <a class="btn btn-border-fill btn-block mt-2" href="{{ path('compte') }}">Retour page compte</a>
+                                <a class="btn btn-border-fill btn-block mt-2" href="{{ path('app_compte') }}">Retour page compte</a>
                             </div>
                             
                         </div>
