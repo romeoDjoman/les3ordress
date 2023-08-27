@@ -59,7 +59,7 @@
 										<a href="javascript:void(0);" onclick="$('#account-detail-tab').trigger('click')">changer votre mot de passe, afficher les détails de votre compte.</a>
 									</p>
 									{% if is_granted('ROLE_ADMIN') %}
-										<a href="{{ path('admin')}}" target="_blank" class="btn btn-fill-out">Accéder au backoffice</a>
+										<a href="" target="_blank" class="btn btn-fill-out">Accéder au backoffice</a>
 									{% endif %}
 								</div>
 							</div>
@@ -71,7 +71,7 @@
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="table">
+										{# <table class="table">
 											<thead>
 												<tr>
 													<th>Commande</th>
@@ -81,7 +81,7 @@
 													<th>Actions</th>
 												</tr>
 											</thead>
-											{# <tbody>
+											 <tbody>
 												{% if orders %}
 													{% for order in orders %}
 														<tr>
@@ -102,19 +102,19 @@
 														{{ app.user.nom }}. Vous n'avez pas encore fait de commande !</div>
 												{% endif %}
 
-											</tbody> #}
-										</table>
+											</tbody> 
+										</table> #}
 									</div>
 								</div>
 							</div>
 						</div>
-						{# <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
+						 <div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
 							<div class="row">
 								<div class="col-lg-12">
-									<a href="{{ path('address_new')}}" class="btn btn-fill-out mb-3">Ajoutez une nouvelle adresse</a>
+									<a href="{{ path('app_address_new')}}" class="btn btn-fill-out mb-3">Ajoutez une nouvelle adresse</a>
 								</div>
 							</div>
-							<div class="row">
+							{# <div class="row">
 								{% if app.user.addresses %}
 									{% set index = 0 %}
 									{% for address in app.user.addresses %}
@@ -130,12 +130,10 @@
 													<address>
 														{{ address.fullName | upper }}
 														<br>
-														Entreprise :
-														{{ address.SocieteName }}
-														<br>
+														
 														{{ address.address}}
 														<br>
-														{{ address.AddressComplement }}
+														{{ address.complement }}
 														<br>
 														{{ address.ville}}
 														<br>
@@ -160,11 +158,11 @@
 									<p>Nous n'avons pas trouvé d'adresse vous concernant, merci d'en créer une !</p>
 								{% endif %}
 
-							</div>
-						</div> #}
+							</div> #}
+						</div> 
 						<div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 							<div class="card">
-								<div class="card-header">
+								{# <div class="card-header">
 									<h3>Compte Détails</h3>
 								</div>
 								<div class="card-body">
@@ -194,7 +192,7 @@
 													<span class="required">*</span>
 												</label>
 												<input required="" value="{{ app.user.email }}" class="form-control" name="email" type="email">
-											</div>
+											</div> #}
 											<div class="form-group col-md-12">
 												<label>Actuel mot de passe
 													<span class="required">*</span>

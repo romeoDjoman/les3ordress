@@ -3,10 +3,10 @@
 {% block title %}Address index{% endblock %}
 
 {% block body %}
-    <h1>Address index</h1>
-
-    <table class="table">
-        <thead>
+<div class="container">
+    <h1>Addresses</h1>
+    <table class="table table-hover table-striped">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Fullname</th>
@@ -31,8 +31,9 @@
                 <td>{{ address.pays }}</td>
                 <td>{{ address.telephone }}</td>
                 <td>
-                    <a href="{{ path('app_address_show', {'id': address.id}) }}">show</a>
-                    <a href="{{ path('app_address_edit', {'id': address.id}) }}">edit</a>
+                    <a href="{{ path('app_address_show', {'id': address.id}) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ path('app_address_edit', {'id': address.id}) }}"><i class="fa-solid fa-pencil ms-3"></i></a>
+                    
                 </td>
             </tr>
         {% else %}
@@ -45,4 +46,5 @@
 
     <a href="{{ path('app_address_new') }}">Creer une adresse</a>
     <a class="ms-5"href="{{ path('app_compte') }}">Retour page compte</a>
+    </div>
 {% endblock %}
