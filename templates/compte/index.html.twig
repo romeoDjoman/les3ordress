@@ -59,7 +59,7 @@
 										<a href="javascript:void(0);" onclick="$('#account-detail-tab').trigger('click')">changer votre mot de passe, afficher les détails de votre compte.</a>
 									</p>
 									{% if is_granted('ROLE_ADMIN') %}
-										<a href="" target="_blank" class="btn btn-fill-out">Accéder au backoffice</a>
+										<a href="{{path('admin')}}" target="_blank" class="btn btn-outline-success">Accéder au backoffice</a>
 									{% endif %}
 								</div>
 							</div>

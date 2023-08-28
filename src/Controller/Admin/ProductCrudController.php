@@ -2,18 +2,19 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Product;
 use DateTime;
+use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -35,6 +36,7 @@ class ProductCrudController extends AbstractCrudController
             BooleanField::new('isBest', 'Les Meilleurs'),
             BooleanField::new('isNew', 'Nouveautés'),
             AssociationField::new('category'),
+            SlugField::new('slug')->setTargetFieldName('nameProduct'),
             ImageField::new('imageProduct')->setBasePath('assets/upload/products/')
                                             ->setUploadDir('public/assets/upload/products/')
                                             ->setUploadedFileNamePattern('[randomhash].[extension]'),
