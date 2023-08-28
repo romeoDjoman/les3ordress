@@ -19,7 +19,6 @@ class AddressType extends AbstractType
             ->add('postal')
             ->add('pays')
             ->add('telephone')
-            ->add('user')
         ;
     }
 

@@ -114,7 +114,7 @@
 									<a href="{{ path('app_address_new')}}" class="btn btn-fill-out mb-3">Ajoutez une nouvelle adresse</a>
 								</div>
 							</div>
-							{# <div class="row">
+							<div class="row">
 								{% if app.user.addresses %}
 									{% set index = 0 %}
 									{% for address in app.user.addresses %}
@@ -131,7 +131,7 @@
 														{{ address.fullName | upper }}
 														<br>
 														
-														{{ address.address}}
+														{{ address.adresse}}
 														<br>
 														{{ address.complement }}
 														<br>
@@ -140,13 +140,13 @@
 														{{ address.postal}}
 														<br>
 														Tel :
-														{{ address.phone }}
+														{{ address.telephone }}
 														<br>
 														{{ address.pays}}
 
 													</address>
 													<div class="btn-group">
-														<a href="{{ path('address_edit', {'id':address.id})}}" class="btn btn-success">Editer</a>
+														<a href="{{ path('app_address_edit', {'id':address.id})}}" class="btn btn-success">Editer</a>
 														{{ include('address/_delete_form.html.twig') }}
 													</div>
 
@@ -158,7 +158,7 @@
 									<p>Nous n'avons pas trouvé d'adresse vous concernant, merci d'en créer une !</p>
 								{% endif %}
 
-							</div> #}
+							</div>
 						</div> 
 						<div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 							<div class="card">

@@ -35,7 +35,7 @@ class Address
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'addresses')]
     private ?User $user = null;
 
     public function getId(): ?int
@@ -138,4 +138,5 @@ class Address
 
         return $this;
     }
+
 }

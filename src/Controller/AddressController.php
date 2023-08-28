@@ -35,7 +35,8 @@ class AddressController extends AbstractController
             $entityManager->persist($address);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_address_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('address_message', 'Votre adresse a bien été enregistrée');
+            return $this->redirectToRoute('app_compte', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('address/new.html.twig', [
@@ -61,7 +62,8 @@ class AddressController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_address_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('address_message', 'Votre adresse a bien été modifiée');
+            return $this->redirectToRoute('app_compte', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('address/edit.html.twig', [
@@ -78,6 +80,7 @@ class AddressController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_address_index', [], Response::HTTP_SEE_OTHER);
+        $this->addFlash('address_message', 'Votre adresse a bien été supprimée');
+        return $this->redirectToRoute('app_compte', [], Response::HTTP_SEE_OTHER);
     }
 }
