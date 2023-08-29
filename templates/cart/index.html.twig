@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+    <section class="row">
+        <div class="col-md-8 mx-auto text-center">
+            <h2>Votre Panier</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>actions</th>
+                        <th>Prix Unitaire</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.produit.nameProduct }}</td>
+                            <td>{{ item.quantite }}</td>
+                            <td><a href="{{ path('cart_ajout', {id: item.produit.id}) }}" class="text-info"><i class="fas fa-plus"></i></a><a href="{{ path('cart_remove', {id: item.produit.id} ) }}" class="btn-sm btn-danger"><i class="fas fa-minus"></i></a> <a href="{{ path('cart_drop', {id: item.produit.id}) }}" class="text-info"><i class="fas fa-times"></i></a></td>
+                            <td>{{ item.produit.priceProduct /100 }}€</td>
+                            <td>{{ item.produit.priceProduct /100 * item.quantite }}€</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if items %}
+             <div class="text-end"><a href="{{ path('cart_drop' ) }}" class="btn-sm btn-danger"><i class="fas fa-times"></i>Vider le panier</a></div>
+             {% endif %}
+            <p>Montant Total : {{ montant /100 }}€</p>
+            <a href="" class="btn btn-primary">Passer la Commande</a>
+        </div>
+    </section>
+{% endblock %}

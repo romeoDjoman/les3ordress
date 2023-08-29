@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitsController!
+{% endblock %}
+
+{% block body %}
+	<section class="row article">
+
+		<article class="col-md-8 mx-auto text-center bg-secondary text-dark border border-dark mb-3 p-3 mt-3 mr-1">
+			<h2>{{product.nameProduct}}</h2>
+			
+			<div class="content">
+				<img src="{{ asset('assets/upload/products/') ~ product.imageProduct}}" alt="photo du produit" class="img-fluid">
+				<div class="text-end">Prix :
+					{{ product.priceProduct / 100}}€</div>
+
+				<div class="py-3 px-5" style="text-align: justify;">{{ product.description|raw}}
+				</div>
+				<a href="{{path('cart_ajout', {id: product.id})}}" class="btn btn-primary">Ajouter au panier</a>
+				{# {{path('cart_ajout', {id: product.id})}} #}
+
+				{# {{ form_errors(personnalisationForm) }} #}
+				
+				{# <div class="text-center my-3">
+											<a href="{{path('cart_ajout', {id: detail_produits.id})}}" class="btn btn-primary">Ajouter au panier</a>
+										</div> #}
+			</article>
+			<div>{# {{form_start(detail_produits, {
+																	attr: {
+																		novalidate: 'novalidate'
+																	}
+																})}}
+													
+																			{{form_row(detail_produits.taille)}}
+																			{# {{form_row(formProduits.category)}}
+																			{{form_row(formArticle.content, {
+																	label: "Contenu",
+																	attr: {
+																		placeholder: "contenu de l'article"
+																	}
+																})}}
+																			{{form_row(formArticle.image)}}
+													
+																			<button type="submit" class="btn btn-primary mt-2">
+																				{% if editMode %}
+																					Enregistrer les modifications
+																				{% else %}
+																					Ajouter l'article
+																				{% endif %}
+																			</button> #}
+
+				{# {{form_end(detail_produits)}} #}
+
+			</div>
+
+		</section>
+	{% endblock %}

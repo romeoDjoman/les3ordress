@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProduitsController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row gx-2">
+			{% for i in products %}
+				<div class="col-md-4">
+					<a href="{{ path('product_details', {id: i.id}) }}" class="card mb-3">
+						<div class="card-header">
+							<h5>{{ i.nameProduct }}</h5>
+							<img src="{{ asset('assets/upload/products/') ~ i.imageProduct }}" alt="photo du i" class="img-fluid">
+						</div>
+						<div class="card-body">
+							<div class="text-end">Prix :
+								{{ i.priceProduct / 100}}€</div>
+							
+                             {# {% if app.user %}
+                                <div class="text-center my-3">
+                                    <a href="{{path('cartAdd')}}" class="btn btn-primary">Ajouter au panier</a>
+                                </div>
+								{% endif %} #}
+								{# {{path('cart_add', {id: i.id})}}}#}
+						</div>
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>{% endblock %}
