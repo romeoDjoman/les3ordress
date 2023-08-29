@@ -65,10 +65,11 @@
 					<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
 				</li>
 				{% endif %}
-
+				 {% if is_granted ('ROLE_ADMIN') %}
 				<li class="nav-item">
-					<a class="nav-link" href="#">Gestionnaire</a>
+					<a class="nav-link" href="{{path('admin')}}">Gestionnaire</a>
 				</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>
