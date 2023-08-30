@@ -1,111 +1,75 @@
-<?php 
+<?php
+
 namespace App\Controller;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use App\Repository\ProduitsRepository;
-use Symfony\Component\Routing\Annotation\Route;
+
+use App\Services\CartServices;
 use App\Repository\ProductRepository;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart/ajout/{id}', name: 'cart_ajout')]
-    public function add(Request $request, SessionInterface $session, ProductRepository $repository, $id)
+    #[Route('/cart', name: 'app_cart')]
+    public function index(CartServices $cs): Response
     {
-        $produit = $repository->find($id);
-        $cart = $session->get('cart', []);
-        $quantite = $session->get('quantite', 0);
+        //$session = $rs->getSession();
+        //$cart = $session->get('cart', []);
+        
+        //* je vais créer un nouveau tableau qui contiendra des objets Product et les quantité de chaque objet
+      //  $cartWithData = [];
+       // $total = 0;
+        //*Pour chaque $id qui se trouve dans mon tableau $cart, j'ajoute une case au tableau $cartWithData, qui est multidimensionnel
+        //* chaque case est elle-même un tableau associatif contenant 2 cases : une case 'product' (produit entier récupéré en BDD) et une case 'quantity' (avec la quantité de se produit présent dans le panier)
+       // foreach($cart as $id => $quantity)
+       // {
+          //  $produit = $repo->find($id);
+           // $cartWithData[] = [
+            //    'product' => $produit,
+            //    'quantity' => $quantity
+          //  ];
+         //   $total += $produit->getPrice() * $quantity;
+      //  }
+        
+      $cartWithData=$cs->cartWithData();
+      $total=$cs->total();
 
-      
-
-        if (!empty($cart[$id])) {
-            $cart[$id]['quantite']++;
-        } else {
-            $cart[$id] = [
-                'produit' => $produit,
-                'quantite' => 1,
-                
-            ];
-        }
-
-        $quantite++;
-        $session->set('quantite', $quantite);
-        $session->set('cart', $cart);
-
-        return $this->redirectToRoute('cart');
-    }
-
-    #[Route('/cart', name: 'cart')]
-    public function index(SessionInterface $session)
-    {
-        $cart = $session->get('cart', []);
-        $cartWithData = [];
-        $montant = 0;
-
-        foreach ($cart as $id => $item) {
-            $produit = $item['produit'];
-            $quantite = $item['quantite'];
-
-            $cartWithData[] = [
-                'produit' => $produit,
-                'quantite' => $quantite,
-            ];
-
-            $montant += $produit->getPriceProduct() * $quantite;
-        }
-
+        
         return $this->render('cart/index.html.twig', [
-            'items' => $cartWithData,
-            'montant' => $montant,
+           'items' => $cartWithData,
+           'total' => $total
         ]);
     }
 
-    #[Route('/cart/remove/{id}', name: 'cart_remove')]
-    public function less($id, SessionInterface $session)
+    #[Route('/cart/add/{id}', name: 'cart_ajout')]
+    public function add($id,CartServices $cs)
     {
-        $cart = $session->get('cart', []);
-        $quantite = $session->get('quantite', 0);
-
-        if (isset($cart[$id])) {
-            if ($cart[$id]['quantite'] != 1) {
-                $cart[$id]['quantite']--;
-                $quantite--;
-            } else {
-                unset($cart[$id]);
-                $quantite--;
-            }
-
-            $session->set('quantite', $quantite);
-            $session->set('cart', $cart);
-        }
-        return $this->redirectToRoute('cart');
+        $cs->add($id);
+        // dd($session->get('cart'));
+        $this->addFlash('success','ajout du produit dans le panier');
+        return $this->redirectToRoute('app_cart');
     }
-    #[Route('/cart/drop/{id}', name:'cart_drop')]
-    public function remove($id,SessionInterface $session)
+
+    #[Route('/cart/remove/{id}', name: 'cart_drop')]
+    public function remove($id, CartServices $cs)
     {
-       
-        $cart= $session->get('cart', []);
-        $quantite = $session->get('quantite', 0);
-
-        if(!empty($cart[$id]))
-        {
-            $cart[$id]['quantite']=0;
-            unset($cart[$id]);
-        }
-        if($quantite < 0){
-            $quantite = 0;
-        }
-        $session->set('quantite', $quantite);
-        $session->set('cart', $cart);
-        return $this->redirectToRoute('cart');
+       $cs->remove($id);
+        return $this->redirectToRoute('app_cart');
     }
-    #[Route('/cart/drop', name:'cart_drop')]
-    public function deleteCart(SessionInterface $session)
+
+    #[Route('/monPanier/decrement/{id}', name: 'decrement')]
+    public function decrement(CartServices $cs, int $id): Response
     {
-        $session->remove('cart');
-        $session->remove('quantite');
-        return $this->redirectToRoute('cart');
+        $cs->decreaseCart($id);
+        //dd($cartService);
+        return $this->redirectToRoute('app_cart');
     }
-    
 
+    #[Route('/monPanier/removeAll', name: 'remove_cart')]
+    public function removeCart(CartServices $cs): Response
+    {
+    $cs->removeCart();
+    return $this->redirectToRoute('app_cart');
+    }
 }
