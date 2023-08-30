@@ -26,4 +26,4 @@ services:
 
     App\Services\CartServices:
         arguments:
-            $session: '@session' # Injecte l'instance de SessionInterface depuis le conteneur de services
+            $repo: '@App\Repository\ProductRepository'
