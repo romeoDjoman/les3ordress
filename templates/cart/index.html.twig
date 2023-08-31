@@ -29,10 +29,10 @@
                 </tbody>
             </table>
             {% if items %}
-             <div class="text-end"><a href="{{ path('remove_cart' ) }}" class="btn-sm btn-danger"><i class="fas fa-times"></i>Vider le panier</a></div>
+             <div class="text-end"><a href="{{ path('remove_cart') }}" class="btn-sm btn-danger"><i class="fas fa-times"></i>Vider le panier</a></div>
              {% endif %}
             <p>Montant Total : {{ total /100 }}€</p>
-            <a href="" class="btn btn-primary">Passer la Commande</a>
+            <a href="{{ path("checkout") }}" class="btn btn-primary">Passer la Commande</a>
         </div>
     </section>
 {% endblock %}

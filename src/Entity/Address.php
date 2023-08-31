@@ -139,4 +139,15 @@ class Address
         return $this;
     }
 
+    public function __toString()
+    {
+        $result = $this->fullname."[spr]";
+        $result .= $this->adresse."[spr]";
+        $result .= $this->Complement."[spr]";
+        $result .= $this->postal. "-" .$this->ville."[spr]";
+        $result .= $this->pays."[spr]";
+        
+        return $result;
+    }
+
 }
