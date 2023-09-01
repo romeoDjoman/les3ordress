@@ -36,7 +36,7 @@ class CheckoutController extends AbstractController
         
         if  ($user->getAddresses()->isEmpty()) {
             $this->addFlash('checkout_message', 'Merci de renseigner une adresse de livraison avant de continuer !');
-            return $this->redirectToRoute("address_new");
+            return $this->redirectToRoute("app_address_new");
         }
 
         $form = $this->createForm(CheckoutType::class, null, ['user' => $user]);
@@ -61,7 +61,7 @@ class CheckoutController extends AbstractController
         
         if ($user->getAddresses()->isEmpty()) {
             $this->addFlash('checkout_message', 'Merci de renseigner une adresse de livraison avant de continuer !');
-            return $this->redirectToRoute("address_new");
+            return $this->redirectToRoute("app_address_new");
         }
         
         $form = $this->createForm(CheckoutType::class, null, ['user' => $user]);
