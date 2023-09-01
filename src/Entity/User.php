@@ -45,12 +45,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Address::class)]
-    private Collection $addresses;
+    private $addresses;
 
     public function __construct()
     {
         $this->addresses = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -169,23 +170,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    public function __toString()
-    {
-        return $this->prenom;
-    }
-
+   
     /**
-     * @return Collection<int, Address>
+     * @return Collection<Address>
      */
     public function getAddresses(): Collection
     {
         return $this->addresses;
     }
 
-    public function addAddress(Address $address): static
+    public function addAddress(Address $address): self
     {
         if (!$this->addresses->contains($address)) {
-            $this->addresses->add($address);
+            $this->addresses[] = $address;
             $address->setUser($this);
         }
 
@@ -202,5 +199,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->prenom;
     }
 }

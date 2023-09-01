@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Address;
-use App\Entity\Transport;
+use App\Entity\Transporteurs;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,12 +20,12 @@ class CheckoutType extends AbstractType
             ->add('address', EntityType::class, [
                 'class'=> Address::class,
                 'required'=>true,
-                'choices'=>$user->getAddresses(),
+                // 'choices'=>$user->getAddresses(),
                 'multiple'=>false,
                 'expanded'=>true
             ])//adress est le nom de la table
             ->add('transport', EntityType::class, [
-                'class'=> Transport::class,
+                'class'=> Transporteurs::class,
                 'required'=>true,
                 'multiple'=>false,
                 'expanded'=>true

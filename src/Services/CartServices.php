@@ -73,6 +73,7 @@ class CartServices
         foreach($cart as $id => $quantite)
         {
             $produit =$this-> repo->find($id);
+            $user =$this-> repo->find($id);
             $cartWithData[] = [
                 'product' => $produit,
                 'quantite' => $quantite

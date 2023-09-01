@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{{ include("partials/title.html.twig", {'name':'Récapitulation de votre commande'}) }}
+	
 
 	<div class="section checkout">
 		<div class="container">
@@ -16,7 +16,7 @@
 						<div class="content">
 							{{ form_widget(checkout.address) | replace({'[spr]' : '<br>'}) | raw}}
 						</div>
-						<a href="{{ path('address_new')}}" class="btn btn-fill-out btn-block mt-1">Nouvelle adresse</a>
+						<a href="{{ path('app_address_new')}}" class="btn btn-fill-out btn-block mt-1">Nouvelle adresse</a>
 					</div>
 					<div class="heading_s1">
 						<h4>Entreprises de livraison</h4>
@@ -46,38 +46,26 @@
 									</tr>
 								</thead>
 								<tbody>
-									{% for element in cart.products %}
+									{% for element in cartData %}
 
 										<tr>
 											<td>
 												{{ element.product.nameProduct }}
 												<span class="product-qty">x
-													{{ element.quantity }}</span>
+													{{ element.quantite }}</span>
 											</td>
 											<td>
 												€
-												{{ element.product.price/100 }}</td>
+												{{element.quantite * element.product.priceProduct /100 }}</td>
 										</tr>
 									{% endfor %}
 								</tbody>
 								<tfoot>
 									<tr>
-										<th>SousTotal HT</th>
-										<td class="product-subtotal">
-											€
-											{{ cart.data.subTotalHT }}</td>
-									</tr>
-									<tr>
-										<th>Taxe</th>
-										<td class="product-subtotal">
-											€
-											{{ cart.data.Taxe }}</td>
-									</tr>
-									<tr>
 										<th>Total</th>
 										<td class="product-subtotal">
 											€
-											{{ cart.data.subTotalTTC }}</td>
+											{{ total /100 }}</td>
 									</tr>
 								</tfoot>
 

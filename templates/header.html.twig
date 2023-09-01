@@ -13,6 +13,7 @@
 					<a class="nav-link" href="{{path('product_show')}}">Produits</a>
 				</li>
 				{# Affichage du nombre de produits dans le panier #}
+				{% if app.user %}
 				<li class="nav-item">
 					<a class="nav-link text-warning position-relative" href="{{path('app_cart')}}">Panier
 						<i class="fab fa-opencart fa-lg"></i>
@@ -25,6 +26,7 @@
 						{% endif %}
 					</a>
 				</li>
+				{% endif %}
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						T-shirts
