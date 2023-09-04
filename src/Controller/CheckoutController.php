@@ -6,6 +6,7 @@ use App\Form\CheckoutType;
 use App\Services\CartServices;
 use App\Services\OrderServices;
 use App\Entity\User;
+use App\Entity\Address;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,7 +51,7 @@ class CheckoutController extends AbstractController
     }
     
     #[Route('/checkout/confirm', name: 'checkoutConfirm')]
-    public function confirm(Request $request, OrderServices $orderServices): Response
+    public function confirm(Request $request): Response
     {
         $user = $this->getUser();    
         $cartData = $this->cs->cartWithData();
