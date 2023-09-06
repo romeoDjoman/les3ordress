@@ -11,7 +11,7 @@
 					<a href="{{ path('product_details', {id: i.id}) }}" class="card mb-3">
 						<div class="card-header">
 							<h5>{{ i.nameProduct }}</h5>
-							<img src="{{ asset('assets/upload/products/') ~ i.imageProduct }}" alt="photo du i" class="img-fluid">
+							<img src="{{asset('assets/upload/products/') ~ i.imageProduct }}" alt="photo du i" class="img-fluid">
 						</div>
 						<div class="card-body">
 							<div class="text-end">Prix :
